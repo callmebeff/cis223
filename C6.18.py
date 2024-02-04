@@ -42,41 +42,53 @@ class ArrayStack():
         
         return self._data.pop()
 
+# create stack S
 S = ArrayStack()
 
+# add elements to stack
 S.push(1)
 S.push(2)
 S.push(3)
 S.push(4)
 S.push(5)
 
-print(S._data)
 
-T = ArrayStack()
 
-def transfer(S, T, U=ArrayStack()):
+def transfer(S):
 
-    print(f'S: {S._data}, T: {T._data}, U: {U._data}')
+    # temporary stacks
+    T = ArrayStack()
+    U=ArrayStack()
 
+    # initial run
+    print(f'--initial--\nS: {S._data}\nT: {T._data}\nU: {U._data}')
+
+    # make sure S is not empty
     if S.is_empty():
         raise ValueError('Stack S is empty')
     
+    # iterate through S
     for i in range(0, S.__len__()):
 
+        # pop element and add it into T. This will put the elements in reverse order
         T.push(S.pop())
 
-    print(f'S: {S._data}, T: {T._data}, U: {U._data}')
+    print(f'--next--\nS: {S._data}\nT: {T._data}\nU: {U._data}')
 
+    # iterate through T
     for i in range(T.__len__()):
 
+        # pop element from T and add it to U. This will put elements in reverse order of T, but in the correct initial order of S
         U.push(T.pop())
 
-    print(f'S: {S._data}, T: {T._data}, U: {U._data}')
+    print(f'--next--\nS: {S._data}\nT: {T._data}\nU: {U._data}')
 
+    # iterate through U
     for i in range(U.__len__()):
 
+        # pop element from U and add it to S. elements will be added in reverse order of U, which was the correct intial order of S, thereby reversing S's initial order of elements
         S.push(U.pop())
 
-    print(f'S: {S._data}, T: {T._data}, U: {U._data}')
+    print(f'--final--\nS: {S._data}\nT: {T._data}\nU: {U._data}')
 
-transfer(S, T)
+transfer(S)

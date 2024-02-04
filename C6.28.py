@@ -1,21 +1,20 @@
 """
-R6.13
+C6.28
 
-Suppose you have a deque D containing the numbers (1, 2, 3, 4, 5, 6, 7, 8),
-in this order. Suppose further that you have an initially empty queue Q.
-Give a code fragment that uses only D and Q (and no other variables) and
-results in D storing the elements in the order (1, 2, 3, 5, 4, 6, 7, 8).
+Modify the ArrayQueue implementation so that the queue’s capacity is
+limited to maxlen elements, where maxlen is an optional parameter to the
+constructor (that defaults to None). If enqueue is called when the queue
+is at full capacity, throw a Full exception (defined similarly to Empty).
 """
 
 class ArrayQueue():
 
-    DEFAULT_CAPACITY = 10
+    def __init__(self, maxlen=None):
 
-    def __init__(self):
-
-        self._data = [None] * ArrayQueue.DEFAULT_CAPACITY
+        self._data = [None] * maxlen
         self._size = 0
         self._front = 0
+        self.maxlen = maxlen
 
     def __len__(self):
 
@@ -48,7 +47,8 @@ class ArrayQueue():
     def enqueue(self, e):
 
         if self._size ==len(self._data):
-            self._resize(2 * len(self.data)) # Double the array size
+
+            raise ValueError('Queue is full.')
 
         avail = (self._front + self._size) % len(self._data)
         self._data[avail] = e
@@ -63,32 +63,3 @@ class ArrayQueue():
             self._data[k] = old[walk]
             walk = (1 + walk) % len(old)
         self._front = 0
-
-# queue to dequeue
-D = ArrayQueue()
-
-# add elements
-D.enqueue(1)
-D.enqueue(2)
-D.enqueue(3)
-D.enqueue(4)
-D.enqueue(5)
-D.enqueue(6)
-D.enqueue(7)
-D.enqueue(8)
-
-# queue to enqueue
-Q = ArrayQueue()
-
-# initial queue values
-print(f'--initial--\nQueue D: {D._data}\nQueue Q: {Q._data}')
-
-# iterate through queue D
-for i in range(D.__len__()):
-    
-    # dequeue each element in D and queue it into Q
-    Q.enqueue(D.dequeue())
-
-# final queue values
-print(f'--final--\nQueue D: {D._data}\nQueue Q: {Q._data}')
-

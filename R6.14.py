@@ -63,17 +63,6 @@ class ArrayQueue():
         self._front = 0
 
 
-D = ArrayQueue()
-
-D.enqueue(1)
-D.enqueue(2)
-D.enqueue(3)
-D.enqueue(4)
-D.enqueue(5)
-D.enqueue(6)
-D.enqueue(7)
-D.enqueue(8)
-
 class ArrayStack():
 
     def __init__(self):
@@ -109,11 +98,28 @@ class ArrayStack():
         
         return self._data.pop()
 
+# create queue
+D = ArrayQueue()
+
+# queue elements
+D.enqueue(1)
+D.enqueue(2)
+D.enqueue(3)
+D.enqueue(4)
+D.enqueue(5)
+D.enqueue(6)
+D.enqueue(7)
+D.enqueue(8)
+
+# create stacj
 S = ArrayStack()
 
+print(f'--initial--\nQueue D: {D._data}\nStack S: {S._data}')
+
+# iterate through queue D
 for i in range(D.__len__()):
     
+    # for each element dequeued from D, add it to stack S
     S.push(D.dequeue())
 
-print(S._data)
-
+print(f'--final--\nQueue D: {D._data}\nStack S: {S._data}')
