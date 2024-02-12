@@ -113,10 +113,4 @@ class StaQue():
         # with no elements in tail, add the element. Could optionally move all the elements back over, but this works just fine
         tail.push(e)
 
-"""
-Running times:
-
-"""
-
-
 
