@@ -9,7 +9,7 @@ ch = f'A{num}'
 cell = f'C{num}'
 
 
-wb = load_workbook(r"C:\Users\jsche\Git\cis223\Exam 2 Review\Questions.xlsx", data_only=True)
+wb = load_workbook(r"Exam 3\Questions.xlsx", data_only=True)
 sh = wb["Questions"]
 
 print(f'\n{sh[ch].value}: {sh[cell].value}\n')
